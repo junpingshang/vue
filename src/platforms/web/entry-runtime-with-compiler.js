@@ -9,6 +9,7 @@ import { query } from './util/index'
 import { compileToFunctions } from './compiler/index'
 import { shouldDecodeNewlines, shouldDecodeNewlinesForHref } from './util/compat'
 
+// 缓存字符串模版
 const idToTemplate = cached(id => {
   const el = query(id)
   return el && el.innerHTML
@@ -31,6 +32,7 @@ Vue.prototype.$mount = function (
 
   const options = this.$options
   // resolve template/el and convert to render function
+  // 模版策略 并最终转换为渲染函数
   if (!options.render) {
     let template = options.template
     if (template) {
